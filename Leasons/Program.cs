@@ -335,12 +335,266 @@ class Program
 		Console.WriteLine($"Гигабайт: {b / (1000.0 * 1000.0 * 1000.0)}");
 	}
 
+	private static bool CheckPoint(int figureNumber, double x, double y)
+	{
+		switch (figureNumber)
+		{
+			case 4:
+				return Math.Abs(x - 4) + Math.Abs(y - 4) <= 2;
+			case 9:
+				return (x >= 2) && (x <= 6) &&
+				       (y >= 0.5 * x - 1) && (y <= 0.5 * x + 3);
+			case 13:
+				return y >= -2 &&
+				       y <= (3.0 / 2) * x + 4 &&
+				       y <= (-3.0 / 2) * x + 4;
+			case 14:
+				return y >= 0 && y <= 4 &&
+				       y <= 2 * x + 12 &&
+				       y <= -2 * x + 12;
+			case 15:
+				return x >= 2 && y <= -0.75 * x + 5.5 && y >= 0.75 * x - 3.5;
+			case 23:
+				return y >= 0 && x * x + y * y >= 4 && x * x + y * y <= 25;
+			default: Console.WriteLine("Неверная фигура"); return false;
+		}
+	}
+
+	private static void Task55()
+	{
+		Console.Write("Введите номер фигуры (4, 9, 13, 14, 15, 23): ");
+		int figureNumber = int.Parse(Console.ReadLine());
+		Console.Write("Введите x: ");
+		double x = double.Parse(Console.ReadLine());
+		Console.Write("Введите y: ");
+		double y = double.Parse(Console.ReadLine());
+
+		bool result = CheckPoint(figureNumber, x, y);
+		Console.WriteLine(result);
+	}
+	
+	private static bool IsInCircle(double x, double y, double cx, double cy, double r)
+	{
+	    return Math.Pow(x - cx, 2) + Math.Pow(y - cy, 2) <= r * r;
+	}
+
+	private static bool IsInRectangle(double x1, double y1, double x2, double y2, double px, double py)
+	{
+		double minX = Math.Min(x1, x2);
+		double maxX = Math.Max(x1, x2);
+		double minY = Math.Min(y1, y2);
+		double maxY = Math.Max(y1, y2);
+
+		return px >= minX && px <= maxX && py >= minY && py <= maxY;
+	}
+
+	public static void TaskFigures()
+	{
+	    Console.Write("Введите номер фигуры (1, 2, 3, 4, 5): ");
+	    int figureNumber = int.Parse(Console.ReadLine());
+	    Console.Write("Введите x: ");
+	    double x = double.Parse(Console.ReadLine());
+	    Console.Write("Введите y: ");
+	    double y = double.Parse(Console.ReadLine());
+
+	    bool result, a, b;
+
+	    switch (figureNumber)
+	    {
+	        case 1:
+	            a = IsInCircle(x, y, 0, 2, 2);
+	            b = IsInCircle(x, y, 0, 1, 1);
+	            result = a && !b;
+	            break;
+
+	        case 2:
+	            a = IsInCircle(x, y, 0, 0, 2.5);
+	            b = IsInCircle(x, y, 5, 5, 2.5);
+	            result = a && b;
+	            break;
+
+	        case 3:
+		        a = IsInCircle(x, y, 0, -2, 2);
+		        b = IsInCircle(x, y, 0, -3, 3);
+		        result = x >= 0 && !a && b;
+	            break;
+
+	        case 4:
+	            a = IsInCircle(x, y, 0, 3, 3) && y >= 0 && x >= 0;
+	            b = IsInCircle(x, y, 0, -2, 2) && y < 0 && x < 0;
+	            result = a || b;
+	            break;
+
+	        case 5:
+	            a = IsInCircle(x, y, 0, 3, 1.5);
+	            b = IsInCircle(x, y, -3, 0, 1.5);
+	            result = a && !b;
+	            break;
+
+	        default:
+	            Console.WriteLine("Неверный номер фигуры. Допустимые: 1, 2, 3, 4, 5");
+	            return;
+	    }
+
+	    Console.WriteLine(result);
+	}
+
+	private static void Task14()
+	{
+		Console.Write("Введите x1: ");
+		double x1 = double.Parse(Console.ReadLine());
+		Console.Write("Введите y1: ");
+		double y1 = double.Parse(Console.ReadLine());
+		Console.Write("Введите x2: ");
+		double x2 = double.Parse(Console.ReadLine());
+		Console.Write("Введите y2: ");
+		double y2 = double.Parse(Console.ReadLine());
+		
+		Console.Write("Введите x: ");
+		double px = double.Parse(Console.ReadLine());
+		Console.Write("Введите y: ");
+		double py = double.Parse(Console.ReadLine());
+
+		Console.WriteLine(IsInRectangle(x1, y1, x2, y2, px, py));
+	}
+	
+	private static bool IsPointOnSegment(double px, double py, double ax, double ay, double bx, double by)
+	{
+		const double eps = 1e-9;
+
+		double cross = (bx - ax) * (py - ay) - (by - ay) * (px - ax);
+		if (Math.Abs(cross) > eps)
+			return false;
+
+		double dot = (px - ax) * (px - bx) + (py - ay) * (py - by);
+		if (dot > eps)
+			return false;
+
+		return true;
+	}
+
+	private static double DistanceFromOriginToSegment(double ax, double ay, double bx, double by)
+	{
+		double l2 = (bx - ax) * (bx - ax) + (by - ay) * (by - ay);
+		if (l2 < 1e-12) // A == B
+			return Math.Sqrt(ax * ax + ay * ay);
+
+		double t = -(ax * (bx - ax) + ay * (by - ay)) / l2;
+		t = Math.Max(0, Math.Min(1, t));
+
+		double projX = ax + t * (bx - ax);
+		double projY = ay + t * (by - ay);
+
+		return Math.Sqrt(projX * projX + projY * projY);
+	}
+
+	private static void Task88()
+	{
+		Console.Write("Введите координаты вершин треугольника A(x1,y1), B(x2,y2), C(x3,y3):\n");
+		double x1 = double.Parse(Console.ReadLine());
+		double y1 = double.Parse(Console.ReadLine());
+		double x2 = double.Parse(Console.ReadLine());
+		double y2 = double.Parse(Console.ReadLine());
+		double x3 = double.Parse(Console.ReadLine());
+		double y3 = double.Parse(Console.ReadLine());
+
+		Console.Write("Введите координаты точки P(x,y):\n");
+		double px = double.Parse(Console.ReadLine());
+		double py = double.Parse(Console.ReadLine());
+
+		bool onAB = IsPointOnSegment(px, py, x1, y1, x2, y2);
+		bool onBC = IsPointOnSegment(px, py, x2, y2, x3, y3);
+		bool onCA = IsPointOnSegment(px, py, x3, y3, x1, y1);
+
+		Console.WriteLine(onAB || onBC || onCA);
+	}
+
+	private static void Task89()
+	{
+		Console.Write("Введите координаты вершин треугольника A(x1,y1), B(x2,y2), C(x3,y3):\n");
+		double x1 = double.Parse(Console.ReadLine());
+		double y1 = double.Parse(Console.ReadLine());
+		double x2 = double.Parse(Console.ReadLine());
+		double y2 = double.Parse(Console.ReadLine());
+		double x3 = double.Parse(Console.ReadLine());
+		double y3 = double.Parse(Console.ReadLine());
+
+		Console.Write("Введите радиус круга (центр в (0,0)): ");
+		double r = double.Parse(Console.ReadLine());
+
+		bool vertexInCircle = (x1 * x1 + y1 * y1 <= r * r) ||
+		                      (x2 * x2 + y2 * y2 <= r * r) ||
+		                      (x3 * x3 + y3 * y3 <= r * r);
+
+		if (vertexInCircle)
+		{
+			Console.WriteLine(true);
+			return;
+		}
+
+		double d1 = DistanceFromOriginToSegment(x1, y1, x2, y2);
+		double d2 = DistanceFromOriginToSegment(x2, y2, x3, y3);
+		double d3 = DistanceFromOriginToSegment(x3, y3, x1, y1);
+
+		bool intersects = (d1 <= r) || (d2 <= r) || (d3 <= r);
+		Console.WriteLine(intersects);
+	}
+
+	private static void TaskFigures2()
+	{
+		Console.Write("Введите x: ");
+		double px = double.Parse(Console.ReadLine());
+		Console.Write("Введите y: ");
+		double py = double.Parse(Console.ReadLine());
+
+		// Круг с квадратом
+		const double r = 3.0f;
+		bool result = IsInRectangle(-r, -r, r, r, px, py);
+
+		if (result)
+		{
+			if (((px >= 0 && py >= 0) || (px < 0 && py < 0)) && IsInCircle(0, 0, px, py, r))
+				result = true;
+			if (((px >= 0 && py < 0) || (px < 0 && py >= 0)) && !IsInCircle(0, 0, px, py, r))
+				result = true;
+		}
+		
+		// Console.WriteLine(result);
+		
+		// Два элипса
+		bool inEllipse1 = (px * px) / 25.0 + (py * py) / 9.0 <= 1.0;
+		bool inEllipse2 = (px * px) / 9.0 + (py * py) / 25.0 <= 1.0;
+		bool outsideStrip = (py > px + 3) || (py < px - 3);
+		
+		Console.WriteLine(inEllipse1 || inEllipse2 || outsideStrip);
+	}
+
+	private static void TaskExam()
+	{
+		while (true)
+		{
+			double x = double.Parse(Console.ReadLine());
+			double y = double.Parse(Console.ReadLine());
+		
+			Console.WriteLine(!(x > -2 && x < 0 && y < 2 && y > 0) && x > -3 && x < 0 && y < 3 && y > -3);
+			Console.WriteLine(y <= 2 && !(x * x + y * y <= 9) && (x * x + y * y <= 25));
+			Console.WriteLine((x * x + y * y <= 9) && !(x < 0 && Math.Abs(y) <= -x));
+		}
+	}
+
 	public static void Main()
 	{
 		// Task49();
-		Task50();
+		// Task50();
 		// Task51();
 		// Task52();
-		Task53();
+		// Task53();
+		// Task55();
+		// TaskFigures();
+		// Task14();
+		// Task88();
+		// Task89();
+		// TaskFigures2();
+		TaskExam();
 	}
 }

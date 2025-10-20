@@ -581,6 +581,44 @@ class Program
 			Console.WriteLine((x * x + y * y <= 9) && !(x < 0 && Math.Abs(y) <= -x));
 		}
 	}
+	
+	private static void Task39()
+	{
+	    Console.WriteLine("Задача №39: Пересечение прямоугольников во втором квадранте");
+
+	    Console.Write("Введите x1 (левый верхний угол первого прямоугольника): ");
+	    double x1 = double.Parse(Console.ReadLine());
+	    Console.Write("Введите y1 (левый верхний угол первого прямоугольника): ");
+	    double y1 = double.Parse(Console.ReadLine());
+	    Console.Write("Введите x2 (правый нижний угол первого прямоугольника): ");
+	    double x2 = double.Parse(Console.ReadLine());
+
+	    Console.Write("Введите x3 (левый верхний угол второго прямоугольника): ");
+	    double x3 = double.Parse(Console.ReadLine());
+	    Console.Write("Введите y3 (левый верхний угол второго прямоугольника): ");
+	    double y3 = double.Parse(Console.ReadLine());
+	    Console.Write("Введите x4 (правый нижний угол второго прямоугольника): ");
+	    double x4 = double.Parse(Console.ReadLine());
+
+	    double left = Math.Max(x1, x3);
+	    double right = Math.Min(x2, x4);
+	    double top = Math.Min(y1, y3);
+	    double bottom = Math.Max(0, Math.Max(y1, y3));
+
+	    bool intersects = left < right && top > bottom;
+
+	    if (intersects)
+	    {
+	        double width = right - left;
+	        double height = top - bottom;
+	        double area = width * height;
+	        Console.WriteLine($"Прямоугольники пересекаются. Площадь общей части: {area}");
+	    }
+	    else
+	    {
+	        Console.WriteLine("Прямоугольники не пересекаются.");
+	    }
+	}
 
 	public static void Main()
 	{
@@ -595,6 +633,7 @@ class Program
 		// Task88();
 		// Task89();
 		// TaskFigures2();
-		TaskExam();
+		// TaskExam();
+		Task39();
 	}
 }

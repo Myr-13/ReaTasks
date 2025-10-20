@@ -584,8 +584,6 @@ class Program
 	
 	private static void Task39()
 	{
-	    Console.WriteLine("Задача №39: Пересечение прямоугольников во втором квадранте");
-
 	    Console.Write("Введите x1 (левый верхний угол первого прямоугольника): ");
 	    double x1 = double.Parse(Console.ReadLine());
 	    Console.Write("Введите y1 (левый верхний угол первого прямоугольника): ");
@@ -600,10 +598,16 @@ class Program
 	    Console.Write("Введите x4 (правый нижний угол второго прямоугольника): ");
 	    double x4 = double.Parse(Console.ReadLine());
 
+	    if (x1 >= x2 || x3 >= x4)
+	    {
+	        Console.WriteLine("Ошибка: Координаты прямоугольников некорректны. x1 должно быть меньше x2, x3 должно быть меньше x4.");
+	        return;
+	    }
+
 	    double left = Math.Max(x1, x3);
 	    double right = Math.Min(x2, x4);
 	    double top = Math.Min(y1, y3);
-	    double bottom = Math.Max(0, Math.Max(y1, y3));
+	    double bottom = 0;
 
 	    bool intersects = left < right && top > bottom;
 
@@ -615,9 +619,7 @@ class Program
 	        Console.WriteLine($"Прямоугольники пересекаются. Площадь общей части: {area}");
 	    }
 	    else
-	    {
 	        Console.WriteLine("Прямоугольники не пересекаются.");
-	    }
 	}
 
 	public static void Main()

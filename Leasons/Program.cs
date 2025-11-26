@@ -1,4 +1,5 @@
 ﻿using System;
+using Leasons;
 
 class Program
 {
@@ -292,36 +293,47 @@ class Program
 
 	public static void Task49()
 	{
-		Console.Write("m = "); int m = int.Parse(Console.ReadLine());
-		Console.Write("n = "); int n = int.Parse(Console.ReadLine());
-		Console.Write("k = "); int k = int.Parse(Console.ReadLine());
+		Console.Write("m = ");
+		int m = int.Parse(Console.ReadLine());
+		Console.Write("n = ");
+		int n = int.Parse(Console.ReadLine());
+		Console.Write("k = ");
+		int k = int.Parse(Console.ReadLine());
 		TimeOnly time = new(m, n, k);
 		Console.WriteLine($"Текущее время: {time.Hour}:{time.Minute}:{time.Second}");
-		Console.Write("p = "); int p = int.Parse(Console.ReadLine());
-		Console.Write("q = "); int q = int.Parse(Console.ReadLine());
-		Console.Write("r = "); int r = int.Parse(Console.ReadLine());
+		Console.Write("p = ");
+		int p = int.Parse(Console.ReadLine());
+		Console.Write("q = ");
+		int q = int.Parse(Console.ReadLine());
+		Console.Write("r = ");
+		int r = int.Parse(Console.ReadLine());
 		time = time.Add(new TimeSpan(p, q, r));
 		Console.WriteLine($"Обновленное время: {time.Hour}:{time.Minute}:{time.Second}");
 	}
 
 	private static void Task50()
 	{
-		Console.Write("Кошки = "); double c = double.Parse(Console.ReadLine());
-		Console.Write("Часы = "); double h = double.Parse(Console.ReadLine());
+		Console.Write("Кошки = ");
+		double c = double.Parse(Console.ReadLine());
+		Console.Write("Часы = ");
+		double h = double.Parse(Console.ReadLine());
 		Console.WriteLine($"Мышек съедено: {(2.0 * c * h) / 3.0}");
 	}
 
 	private static void Task51()
 	{
-		Console.Write("R = "); double r = double.Parse(Console.ReadLine());
-		Console.Write("H = "); double h = double.Parse(Console.ReadLine());
+		Console.Write("R = ");
+		double r = double.Parse(Console.ReadLine());
+		Console.Write("H = ");
+		double h = double.Parse(Console.ReadLine());
 		Console.WriteLine($"Объем цилиндра: {Math.PI * r * r * h}");
 		Console.WriteLine($"Объем конуса: {1.0 / 3.0 * Math.PI * r * r * h}");
 	}
 
 	private static void Task52()
 	{
-		Console.Write("Символ: "); int a = Console.Read();
+		Console.Write("Символ: ");
+		int a = Console.Read();
 		Console.WriteLine($"Предыдущий символ: {(char)(a - 1)} = {a - 1}");
 		Console.WriteLine($"Текущий символ: {(char)a} = {a}");
 		Console.WriteLine($"Следующий символ: {(char)(a + 1)} = {a + 1}");
@@ -329,7 +341,8 @@ class Program
 
 	private static void Task53()
 	{
-		Console.Write("Кол-во байт = "); int b = int.Parse(Console.ReadLine());
+		Console.Write("Кол-во байт = ");
+		int b = int.Parse(Console.ReadLine());
 		Console.WriteLine($"Килобайт: {b / 1000.0}");
 		Console.WriteLine($"Мегабайт: {b / (1000.0 * 1000.0)}");
 		Console.WriteLine($"Гигабайт: {b / (1000.0 * 1000.0 * 1000.0)}");
@@ -356,7 +369,9 @@ class Program
 				return x >= 2 && y <= -0.75 * x + 5.5 && y >= 0.75 * x - 3.5;
 			case 23:
 				return y >= 0 && x * x + y * y >= 4 && x * x + y * y <= 25;
-			default: Console.WriteLine("Неверная фигура"); return false;
+			default:
+				Console.WriteLine("Неверная фигура");
+				return false;
 		}
 	}
 
@@ -372,10 +387,10 @@ class Program
 		bool result = CheckPoint(figureNumber, x, y);
 		Console.WriteLine(result);
 	}
-	
+
 	private static bool IsInCircle(double x, double y, double cx, double cy, double r)
 	{
-	    return Math.Pow(x - cx, 2) + Math.Pow(y - cy, 2) <= r * r;
+		return Math.Pow(x - cx, 2) + Math.Pow(y - cy, 2) <= r * r;
 	}
 
 	private static bool IsInRectangle(double x1, double y1, double x2, double y2, double px, double py)
@@ -390,53 +405,53 @@ class Program
 
 	public static void TaskFigures()
 	{
-	    Console.Write("Введите номер фигуры (1, 2, 3, 4, 5): ");
-	    int figureNumber = int.Parse(Console.ReadLine());
-	    Console.Write("Введите x: ");
-	    double x = double.Parse(Console.ReadLine());
-	    Console.Write("Введите y: ");
-	    double y = double.Parse(Console.ReadLine());
+		Console.Write("Введите номер фигуры (1, 2, 3, 4, 5): ");
+		int figureNumber = int.Parse(Console.ReadLine());
+		Console.Write("Введите x: ");
+		double x = double.Parse(Console.ReadLine());
+		Console.Write("Введите y: ");
+		double y = double.Parse(Console.ReadLine());
 
-	    bool result, a, b;
+		bool result, a, b;
 
-	    switch (figureNumber)
-	    {
-	        case 1:
-	            a = IsInCircle(x, y, 0, 2, 2);
-	            b = IsInCircle(x, y, 0, 1, 1);
-	            result = a && !b;
-	            break;
+		switch (figureNumber)
+		{
+			case 1:
+				a = IsInCircle(x, y, 0, 2, 2);
+				b = IsInCircle(x, y, 0, 1, 1);
+				result = a && !b;
+				break;
 
-	        case 2:
-	            a = IsInCircle(x, y, 0, 0, 2.5);
-	            b = IsInCircle(x, y, 5, 5, 2.5);
-	            result = a && b;
-	            break;
+			case 2:
+				a = IsInCircle(x, y, 0, 0, 2.5);
+				b = IsInCircle(x, y, 5, 5, 2.5);
+				result = a && b;
+				break;
 
-	        case 3:
-		        a = IsInCircle(x, y, 0, -2, 2);
-		        b = IsInCircle(x, y, 0, -3, 3);
-		        result = x >= 0 && !a && b;
-	            break;
+			case 3:
+				a = IsInCircle(x, y, 0, -2, 2);
+				b = IsInCircle(x, y, 0, -3, 3);
+				result = x >= 0 && !a && b;
+				break;
 
-	        case 4:
-	            a = IsInCircle(x, y, 0, 3, 3) && y >= 0 && x >= 0;
-	            b = IsInCircle(x, y, 0, -2, 2) && y < 0 && x < 0;
-	            result = a || b;
-	            break;
+			case 4:
+				a = IsInCircle(x, y, 0, 3, 3) && y >= 0 && x >= 0;
+				b = IsInCircle(x, y, 0, -2, 2) && y < 0 && x < 0;
+				result = a || b;
+				break;
 
-	        case 5:
-	            a = IsInCircle(x, y, 0, 3, 1.5);
-	            b = IsInCircle(x, y, -3, 0, 1.5);
-	            result = a && !b;
-	            break;
+			case 5:
+				a = IsInCircle(x, y, 0, 3, 1.5);
+				b = IsInCircle(x, y, -3, 0, 1.5);
+				result = a && !b;
+				break;
 
-	        default:
-	            Console.WriteLine("Неверный номер фигуры. Допустимые: 1, 2, 3, 4, 5");
-	            return;
-	    }
+			default:
+				Console.WriteLine("Неверный номер фигуры. Допустимые: 1, 2, 3, 4, 5");
+				return;
+		}
 
-	    Console.WriteLine(result);
+		Console.WriteLine(result);
 	}
 
 	private static void Task14()
@@ -449,7 +464,7 @@ class Program
 		double x2 = double.Parse(Console.ReadLine());
 		Console.Write("Введите y2: ");
 		double y2 = double.Parse(Console.ReadLine());
-		
+
 		Console.Write("Введите x: ");
 		double px = double.Parse(Console.ReadLine());
 		Console.Write("Введите y: ");
@@ -457,7 +472,7 @@ class Program
 
 		Console.WriteLine(IsInRectangle(x1, y1, x2, y2, px, py));
 	}
-	
+
 	private static bool IsPointOnSegment(double px, double py, double ax, double ay, double bx, double by)
 	{
 		const double eps = 1e-9;
@@ -558,14 +573,14 @@ class Program
 			if (((px >= 0 && py < 0) || (px < 0 && py >= 0)) && !IsInCircle(0, 0, px, py, r))
 				result = true;
 		}
-		
+
 		// Console.WriteLine(result);
-		
+
 		// Два элипса
 		bool inEllipse1 = (px * px) / 25.0 + (py * py) / 9.0 <= 1.0;
 		bool inEllipse2 = (px * px) / 9.0 + (py * py) / 25.0 <= 1.0;
 		bool outsideStrip = (py > px + 3) || (py < px - 3);
-		
+
 		Console.WriteLine(inEllipse1 || inEllipse2 || outsideStrip);
 	}
 
@@ -575,55 +590,662 @@ class Program
 		{
 			double x = double.Parse(Console.ReadLine());
 			double y = double.Parse(Console.ReadLine());
-		
+
 			Console.WriteLine(!(x > -2 && x < 0 && y < 2 && y > 0) && x > -3 && x < 0 && y < 3 && y > -3);
 			Console.WriteLine(y <= 2 && !(x * x + y * y <= 9) && (x * x + y * y <= 25));
 			Console.WriteLine((x * x + y * y <= 9) && !(x < 0 && Math.Abs(y) <= -x));
 		}
 	}
-	
+
 	private static void Task39()
 	{
-	    Console.Write("Введите x1 (левый верхний угол первого прямоугольника): ");
-	    double x1 = double.Parse(Console.ReadLine());
-	    Console.Write("Введите y1 (левый верхний угол первого прямоугольника): ");
-	    double y1 = double.Parse(Console.ReadLine());
-	    Console.Write("Введите x2 (правый нижний угол первого прямоугольника): ");
-	    double x2 = double.Parse(Console.ReadLine());
+		Console.Write("Введите x1 (левый верхний угол первого прямоугольника): ");
+		double x1 = double.Parse(Console.ReadLine());
+		Console.Write("Введите y1 (левый верхний угол первого прямоугольника): ");
+		double y1 = double.Parse(Console.ReadLine());
+		Console.Write("Введите x2 (правый нижний угол первого прямоугольника): ");
+		double x2 = double.Parse(Console.ReadLine());
 
-	    Console.Write("Введите x3 (левый верхний угол второго прямоугольника): ");
-	    double x3 = double.Parse(Console.ReadLine());
-	    Console.Write("Введите y3 (левый верхний угол второго прямоугольника): ");
-	    double y3 = double.Parse(Console.ReadLine());
-	    Console.Write("Введите x4 (правый нижний угол второго прямоугольника): ");
-	    double x4 = double.Parse(Console.ReadLine());
+		Console.Write("Введите x3 (левый верхний угол второго прямоугольника): ");
+		double x3 = double.Parse(Console.ReadLine());
+		Console.Write("Введите y3 (левый верхний угол второго прямоугольника): ");
+		double y3 = double.Parse(Console.ReadLine());
+		Console.Write("Введите x4 (правый нижний угол второго прямоугольника): ");
+		double x4 = double.Parse(Console.ReadLine());
 
-	    if (x1 >= x2 || x3 >= x4)
-	    {
-	        Console.WriteLine("Ошибка: Координаты прямоугольников некорректны. x1 должно быть меньше x2, x3 должно быть меньше x4.");
-	        return;
-	    }
+		if (x1 >= x2 || x3 >= x4)
+		{
+			Console.WriteLine(
+				"Ошибка: Координаты прямоугольников некорректны. x1 должно быть меньше x2, x3 должно быть меньше x4.");
+			return;
+		}
 
-	    double left = Math.Max(x1, x3);
-	    double right = Math.Min(x2, x4);
-	    double top = Math.Min(y1, y3);
-	    double bottom = 0;
+		double left = Math.Max(x1, x3);
+		double right = Math.Min(x2, x4);
+		double top = Math.Min(y1, y3);
+		double bottom = 0;
 
-	    bool intersects = left < right && top > bottom;
+		bool intersects = left < right && top > bottom;
 
-	    if (intersects)
-	    {
-	        double width = right - left;
-	        double height = top - bottom;
-	        double area = width * height;
-	        Console.WriteLine($"Прямоугольники пересекаются. Площадь общей части: {area}");
-	    }
-	    else
-	        Console.WriteLine("Прямоугольники не пересекаются.");
+		if (intersects)
+		{
+			double width = right - left;
+			double height = top - bottom;
+			double area = width * height;
+			Console.WriteLine($"Прямоугольники пересекаются. Площадь общей части: {area}");
+		}
+		else
+			Console.WriteLine("Прямоугольники не пересекаются.");
+	}
+
+	private static double TriangleArea(double x1, double y1, double x2, double y2, double x3, double y3)
+	{
+		return Math.Abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
+	}
+
+	private static void Task1()
+	{
+		Console.Write("Введите x1: ");
+		double x1 = double.Parse(Console.ReadLine());
+		Console.Write("Введите y1: ");
+		double y1 = double.Parse(Console.ReadLine());
+		Console.Write("Введите x2: ");
+		double x2 = double.Parse(Console.ReadLine());
+		Console.Write("Введите y2: ");
+		double y2 = double.Parse(Console.ReadLine());
+		Console.Write("Введите x3: ");
+		double x3 = double.Parse(Console.ReadLine());
+		Console.Write("Введите y3: ");
+		double y3 = double.Parse(Console.ReadLine());
+
+		double s = TriangleArea(x1, y1, x2, y2, x3, y3);
+		Console.WriteLine($"Прощадь: {s}");
+	}
+
+	private static void Task6()
+	{
+		Console.Write("Введите сторону правильного шестиугольника a: ");
+		double a = double.Parse(Console.ReadLine());
+
+		double area = 6 * TriangleArea(0, 0, a, 0, a * 0.5, a * Math.Sqrt(3) / 2);
+		Console.WriteLine($"Площадь правильного шестиугольника: {area}");
+	}
+
+	private static int GCD(int a, int b)
+	{
+		while (b != 0)
+		{
+			int temp = b;
+			b = a % b;
+			a = temp;
+		}
+
+		return a;
+	}
+
+	private static void Task10()
+	{
+		Console.Write("Введите A: ");
+		int a = int.Parse(Console.ReadLine());
+		Console.Write("Введите B: ");
+		int b = int.Parse(Console.ReadLine());
+		Console.Write("Введите C: ");
+		int c = int.Parse(Console.ReadLine());
+		Console.Write("Введите D: ");
+		int d = int.Parse(Console.ReadLine());
+
+		// Деление дробей: (A/B) / (C/D) = (A*D)/(B*C)
+		int numDiv = a * d;
+		int denDiv = b * c;
+		int gcdDiv = GCD(numDiv, denDiv);
+		Console.WriteLine($"Деление: {numDiv / gcdDiv}/{denDiv / gcdDiv}");
+
+		// Умножение дробей: (A/B) * (C/D) = (A*C)/(B*D)
+		int numMul = a * c;
+		int denMul = b * d;
+		int gcdMul = GCD(numMul, denMul);
+		Console.WriteLine($"Умножение: {numMul / gcdMul}/{denMul / gcdMul}");
+
+		// Сложение дробей: (A/B) + (C/D) = (A*D + C*B)/(B*D)
+		int numAdd = a * d + c * b;
+		int denAdd = b * d;
+		int gcdAdd = GCD(numAdd, denAdd);
+		Console.WriteLine($"Сложение: {numAdd / gcdAdd}/{denAdd / gcdAdd}");
+	}
+
+	private static void Task12()
+	{
+		Console.Write("Введите X: ");
+		double x = double.Parse(Console.ReadLine());
+		Console.Write("Введите Y: ");
+		double y = double.Parse(Console.ReadLine());
+		Console.Write("Введите Z: ");
+		double z = double.Parse(Console.ReadLine());
+		Console.Write("Введите T: ");
+		double t = double.Parse(Console.ReadLine());
+
+		double area = (x * y) / 2.0 + (z * t) / 2.0;
+		Console.WriteLine($"Площадь четырехугольника: {area}");
+	}
+
+	private static void ParaWork()
+	{
+		// 73, 86, про рубли (ДЗ)
+
+		int r = Int32.Parse(Console.ReadLine());
+	}
+
+	public static void ZachetIfElse()
+	{
+		Console.Write("Введите номер задачи (1-31): ");
+		int task = int.Parse(Console.ReadLine());
+
+		Console.Write("Введите первое число: ");
+		int a = int.Parse(Console.ReadLine());
+		Console.Write("Введите второе число: ");
+		int b = int.Parse(Console.ReadLine());
+		Console.Write("Введите третье число: ");
+		int c = int.Parse(Console.ReadLine());
+
+		switch (task)
+		{
+			case 1:
+			{
+				int negCount = (a < 0 ? 1 : 0) + (b < 0 ? 1 : 0) + (c < 0 ? 1 : 0);
+				Console.WriteLine(negCount);
+				
+				break;
+			}
+
+			case 2:
+			{
+				int posSum = (a > 0 ? a : 0) + (b > 0 ? b : 0) + (c > 0 ? c : 0);
+				Console.WriteLine(posSum);
+				
+				break;
+			}
+
+			case 3:
+			{
+				int evenCount = (a % 2 == 0 ? 1 : 0) + (b % 2 == 0 ? 1 : 0) + (c % 2 == 0 ? 1 : 0);
+				Console.WriteLine(evenCount);
+				
+				break;
+			}
+
+			case 4:
+			{
+				double avg = (a + b + c) / 3.0;
+				int aboveAvg = (a > avg ? 1 : 0) + (b > avg ? 1 : 0) + (c > avg ? 1 : 0);
+				Console.WriteLine(aboveAvg);
+				
+				break;
+			}
+
+			case 5:
+			{
+				int sumEndsZero = (a % 10 == 0 ? a : 0) + (b % 10 == 0 ? b : 0) + (c % 10 == 0 ? c : 0);
+				Console.WriteLine(sumEndsZero);
+				
+				break;
+			}
+
+			case 6:
+			{
+				int oddSum = (a % 2 != 0 ? a : 0) + (b % 2 != 0 ? b : 0) + (c % 2 != 0 ? c : 0);
+				Console.WriteLine(oddSum);
+				
+				break;
+			}
+
+			case 7:
+			{
+				int prod = a * b * c;
+				int lessThanProd = (a < prod ? 1 : 0) + (b < prod ? 1 : 0) + (c < prod ? 1 : 0);
+				Console.WriteLine(lessThanProd);
+				
+				break;
+			}
+
+			case 8:
+			{
+				int endsFive = (a % 10 == 5 ? 1 : 0) + (b % 10 == 5 ? 1 : 0) + (c % 10 == 5 ? 1 : 0);
+				Console.WriteLine(endsFive);
+				
+				break;
+			}
+
+			case 9:
+			{
+				int zeros = (a == 0 ? 1 : 0) + (b == 0 ? 1 : 0) + (c == 0 ? 1 : 0);
+				Console.WriteLine(zeros);
+				
+				break;
+			}
+
+			case 10:
+			{
+				int twoDigit = ((a >= 10 && a <= 99) || (a >= -99 && a <= -10) ? 1 : 0) +
+				               ((b >= 10 && b <= 99) || (b >= -99 && b <= -10) ? 1 : 0) +
+				               ((c >= 10 && c <= 99) || (c >= -99 && c <= -10) ? 1 : 0);
+				Console.WriteLine(twoDigit);
+				
+				break;
+			}
+
+			case 11:
+			{
+				int sumDiv3 = (a % 3 == 0 ? a : 0) + (b % 3 == 0 ? b : 0) + (c % 3 == 0 ? c : 0);
+				Console.WriteLine(sumDiv3);
+				
+				break;
+			}
+
+			case 12:
+			{
+				int inRange = (a >= -3 && a <= 3 ? 1 : 0) + (b >= -3 && b <= 3 ? 1 : 0) + (c >= -3 && c <= 3 ? 1 : 0);
+				Console.WriteLine(inRange);
+				break;
+			}
+
+			case 13:
+			{
+				Console.Write("Введите заданное число: ");
+				int target = int.Parse(Console.ReadLine());
+				
+				int sumAboveTarget = (a > target ? a : 0) + (b > target ? b : 0) + (c > target ? c : 0);
+				Console.WriteLine(sumAboveTarget);
+				
+				break;
+			}
+
+			case 14:
+			{
+				int posCount = (a > 0 ? 1 : 0) + (b > 0 ? 1 : 0) + (c > 0 ? 1 : 0);
+				Console.WriteLine(posCount);
+				
+				break;
+			}
+
+			case 15:
+			{
+				int negSum = (a < 0 ? a : 0) + (b < 0 ? b : 0) + (c < 0 ? c : 0);
+				Console.WriteLine(negSum);
+				
+				break;
+			}
+
+			case 16:
+			{
+				int evenSum = (a % 2 == 0 ? a : 0) + (b % 2 == 0 ? b : 0) + (c % 2 == 0 ? c : 0);
+				Console.WriteLine(evenSum);
+				
+				break;
+			}
+			
+			case 17:
+			{
+				int prod = a * b * c;
+				int greaterThanProd = (a > prod ? 1 : 0) + (b > prod ? 1 : 0) + (c > prod ? 1 : 0);
+				Console.WriteLine(greaterThanProd);
+				
+				break;
+			}
+
+			case 18:
+			{
+				int endsTen = (a % 10 == 0 && a != 0 ? 1 : 0) + (b % 10 == 0 && b != 0 ? 1 : 0) +
+				              (c % 10 == 0 && c != 0 ? 1 : 0);
+				Console.WriteLine(endsTen);
+				
+				break;
+			}
+
+			case 19:
+			{
+				int oddCount = (a % 2 != 0 ? 1 : 0) + (b % 2 != 0 ? 1 : 0) + (c % 2 != 0 ? 1 : 0);
+				Console.WriteLine(oddCount);
+				
+				break;
+			}
+
+			case 20:
+			{
+				double avg = (a + b + c) / 3.0;
+				int belowAvg = (a < avg ? 1 : 0) + (b < avg ? 1 : 0) + (c < avg ? 1 : 0);
+				Console.WriteLine(belowAvg);
+				
+				break;
+			}
+
+			case 21:
+			{
+				int sumEndsSix = (a % 10 == 6 ? a : 0) + (b % 10 == 6 ? b : 0) + (c % 10 == 6 ? c : 0);
+				Console.WriteLine(sumEndsSix);
+				
+				break;
+			}
+
+			case 22:
+			{
+				int sumBelow100 = (a < 100 ? a : 0) + (b < 100 ? b : 0) + (c < 100 ? c : 0);
+				Console.WriteLine(sumBelow100);
+				
+				break;
+			}
+
+			case 23:
+			{
+				int sumThreeDigit = ((a >= 100 && a <= 999) || (a <= -100 && a >= -999) ? a : 0) +
+				                    ((b >= 100 && b <= 999) || (b <= -100 && b >= -999) ? b : 0) +
+				                    ((c >= 100 && c <= 999) || (c <= -100 && c >= -999) ? c : 0);
+				Console.WriteLine(sumThreeDigit);
+				
+				break;
+			}
+
+			case 24:
+			{
+				int div7Count = (a % 7 == 0 ? 1 : 0) + (b % 7 == 0 ? 1 : 0) + (c % 7 == 0 ? 1 : 0);
+				Console.WriteLine(div7Count);
+				
+				break;
+			}
+
+			case 25:
+			{
+				Console.Write("Введите X: ");
+				int x = int.Parse(Console.ReadLine());
+				Console.Write("Введите Y: ");
+				int y = int.Parse(Console.ReadLine());
+				int sumInRange = (a >= x && a <= y ? a : 0) + (b >= x && b <= y ? b : 0) + (c >= x && c <= y ? c : 0);
+				Console.WriteLine(sumInRange);
+				
+				break;
+			}
+			
+			case 26:
+			{
+				Console.Write("Введите заданное число: ");
+				int target = int.Parse(Console.ReadLine());
+				
+				int countBelowTarget = (a < target ? 1 : 0) + (b < target ? 1 : 0) + (c < target ? 1 : 0);
+				Console.WriteLine(countBelowTarget);
+					
+				break;
+			}
+
+			case 27:
+			{
+				int absLess3 = (Math.Abs(a) < 3 ? 1 : 0) + (Math.Abs(b) < 3 ? 1 : 0) + (Math.Abs(c) < 3 ? 1 : 0);
+				Console.WriteLine(absLess3);
+				
+				break;
+			}
+
+			case 28:
+			{
+				int sumDiv10 = (a % 10 == 0 ? a : 0) + (b % 10 == 0 ? b : 0) + (c % 10 == 0 ? c : 0);
+				Console.WriteLine(sumDiv10);
+				
+				break;
+			}
+
+			case 29:
+			{
+				int nonNegCount = (a >= 0 ? 1 : 0) + (b >= 0 ? 1 : 0) + (c >= 0 ? 1 : 0);
+				Console.WriteLine(nonNegCount);
+				
+				break;
+			}
+
+			case 30:
+			{
+				int sumAbsMore5 = (Math.Abs(a) > 5 ? a : 0) + (Math.Abs(b) > 5 ? b : 0) + (Math.Abs(c) > 5 ? c : 0);
+				Console.WriteLine(sumAbsMore5);
+				
+				break;
+			}
+
+			case 31:
+			{
+				Console.WriteLine(a + b + c);
+				
+				break;
+			}
+
+			default:
+				Console.WriteLine("Неверный номер задачи");
+				break;
+		}
+	}
+
+	private static void ZachetTask2()
+	{
+		// 13. Проверить, равна ли сумма двух первых цифр четырехзначного числа сумме двух последних
+		Console.Write("N (четырехзначное): "); int n = int.Parse(Console.ReadLine());
+		int d1 = n / 1000;
+		int d2 = (n / 100) % 10;
+		int d3 = (n / 10) % 10;
+		int d4 = n % 10;
+		Console.WriteLine((d1 + d2) == (d3 + d4));
+	}
+
+	private static void Task86()
+	{
+		Console.Write("Введите натуральное число N (N <= 10000): ");
+		int n = int.Parse(Console.ReadLine());
+
+		string[] units = { "ноль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять" };
+		string[] teens = { "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать" };
+		string[] tens = { "", "", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто" };
+		string[] hundreds = { "", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот" };
+
+		if (n == 0)
+		{
+			Console.WriteLine("ноль");
+			return;
+		}
+
+		string result = "";
+
+		if (n >= 1000)
+		{
+			int thousands = n / 1000;
+			if (thousands == 1)
+				result += "одна тысяча ";
+			else if (thousands == 2 || thousands == 3 || thousands == 4)
+				result += $"{units[thousands]} тысячи ";
+			else
+				result += $"{units[thousands]} тысяч ";
+			n %= 1000;
+		}
+
+		if (n >= 100)
+		{
+			int h = n / 100;
+			result += hundreds[h] + " ";
+			n %= 100;
+		}
+
+		if (n >= 20)
+		{
+			int t = n / 10;
+			result += tens[t] + " ";
+			n %= 10;
+		}
+		else if (n >= 10)
+		{
+			result += teens[n - 10] + " ";
+			n = 0;
+		}
+
+		if (n > 0)
+		{
+			result += units[n];
+		}
+
+		Console.WriteLine(result.Trim());
+	}
+
+	private static void TaskRubles()
+	{
+		Console.Write("Введите число: ");
+		long n = long.Parse(Console.ReadLine());
+
+		string word;
+		long lastDigit = n % 10;
+		long lastTwoDigits = n % 100;
+
+		if (lastTwoDigits >= 11 && lastTwoDigits <= 19)
+		{
+			word = "рублей";
+		}
+		else
+		{
+			switch (lastDigit)
+			{
+				case 1:
+					word = "рубль";
+					break;
+				case 2:
+				case 3:
+				case 4:
+					word = "рубля";
+					break;
+				default:
+					word = "рублей";
+					break;
+			}
+		}
+
+		Console.WriteLine($"{n} {word}");
+	}
+	
+	private static void Task3Page243()
+	{
+		int amebas = 1;
+
+		for (int i = 0; i <= 24 / 3; i++)
+		{
+			Console.WriteLine($"Через {i * 3} часов будет {amebas} амеб.");
+			amebas *= 2;
+		}
+	}
+	
+	private static void Task12Page245()
+	{
+		Console.Write("Ежемесячная стипендия A (р.): ");
+		double stipend = double.Parse(Console.ReadLine());
+		Console.Write("Ежемесячные расходы B (р.): ");
+		double expenses = double.Parse(Console.ReadLine());
+
+		if (expenses <= stipend)
+		{
+			Console.WriteLine("Расходы не превышают стипендию. Дополнительных денег не требуется.");
+			return;
+		}
+
+		double totalNeeded = 0;
+		double currentExpenses = expenses;
+
+		for (int month = 1; month <= 10; month++)
+		{
+			double deficit = currentExpenses - stipend;
+			if (deficit > 0)
+				totalNeeded += deficit;
+
+			currentExpenses *= 1.03;
+		}
+
+		Console.WriteLine($"Необходимая сумма денег от родителей: {totalNeeded:F2} рублей.");
+	}
+
+	public static void RandomGrade()
+	{
+		var rnd = new Random();
+
+		double s = 0;
+		for (int i = 0; i < 30; i++)
+		{
+			var a = rnd.Next(2, 6);
+			Console.Write($"{a} ");
+			s += a;
+		}
+		Console.WriteLine($"\n{s / 30}");
+	}
+	
+	private static void Task18()
+	{
+		// Решение: заменить буквы цифрами так, чтобы ХРУСТ * ГРОХОТ = РРРРРРРРРР
+		// Заметим: результат — 10 одинаковых цифр → это число вида R * 1111111111
+		// 1111111111 = 11 * 41 * 271 * 9091 — разложение на простые множители
+
+		Console.WriteLine("Решение задачи:");
+		Console.WriteLine("Подставляем цифры вместо букв так, чтобы равенство выполнялось.");
+
+		// Перебор всех возможных значений для букв (0-9), с учетом уникальности
+		for (int x = 1; x <= 9; x++)      // Х не может быть 0
+		for (int r = 1; r <= 9; r++)      // Р не может быть 0 (т.к. 10 цифр подряд)
+		for (int u = 0; u <= 9; u++)
+		for (int s = 0; s <= 9; s++)
+		for (int t = 0; t <= 9; t++)
+		for (int g = 1; g <= 9; g++)      // Г не может быть 0
+		for (int o = 0; o <= 9; o++)
+		for (int h = 0; h <= 9; h++)
+		{
+			// Проверяем, что все буквы имеют разные цифры
+			var digits = new[] { x, r, u, s, t, g, o, h };
+			if (digits.Distinct().Count() != digits.Length) continue;
+
+			int xrust = x * 10000 + r * 1000 + u * 100 + s * 10 + t;
+			int grohot = g * 100000 + r * 10000 + o * 1000 + h * 100 + o * 10 + t;
+			long product = (long)xrust * grohot;
+			long expected = r * 1111111111L; // РРРРРРРРРР = R * 1111111111
+
+			if (product == expected)
+			{
+				Console.WriteLine($"Найдено решение:");
+				Console.WriteLine($"Х={x}, Р={r}, У={u}, С={s}, Т={t}, Г={g}, О={o}, Н={h}");
+				Console.WriteLine($"{xrust} × {grohot} = {product}");
+				return;
+			}
+		}
+
+		Console.WriteLine("Решение не найдено.");
+	}
+
+	public static void RandomValues()
+	{
+		Random r = new();
+		int a = 0, count = 0;
+
+		do
+		{
+			a = r.Next(30);
+			count++;
+		} while (a != 0);
+		
+		Console.WriteLine(count);
+		count = 0;
+
+		a = r.Next(1000000);
+		Console.WriteLine(a);
+
+		do
+		{
+			a /= 10;
+			count++;
+		} while (a > 0);
+		
+		Console.WriteLine(count);
 	}
 
 	public static void Main()
 	{
+		// ДЗ: стр. 250
+		// 101, 112, 113, 120, 125
+
 		// Task49();
 		// Task50();
 		// Task51();
@@ -636,6 +1258,23 @@ class Program
 		// Task89();
 		// TaskFigures2();
 		// TaskExam();
-		Task39();
+		// Task39();
+		// ZachetIfElse();
+		// ZachetTask2();
+		// Task86();
+		// TaskRubles();
+		// Task3Page243();
+		// Task12Page245();
+		// RandomGrade();
+		// Task18();
+		
+		// Page245.Run();
+		// RandomValues();
+		
+		// LeasonTasks.Task1();
+		// LeasonTasks.Task2();
+		// LeasonTasks.Task3();
+		
+		Page245.Run();
 	}
 }
